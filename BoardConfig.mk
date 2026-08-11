@@ -70,7 +70,7 @@ BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR := vendor
 BOARD_SUPER_PARTITION_SIZE := 8648654848
 BOARD_SUPER_PARTITION_GROUPS := oppo_dynamic_partitions
-BOARD_OPPO_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor product system_ext odm my_stock my_preload my_region my_heytap
+BOARD_OPPO_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor product system_ext odm
 BOARD_OPPO_DYNAMIC_PARTITIONS_SIZE := 8648654848
 
 # Platform
