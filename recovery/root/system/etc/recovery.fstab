@@ -1,0 +1,16 @@
+/system                 ext4    system                                                  wait,logical,first_stage_mount
+/vendor                 ext4    vendor                                                  wait,logical,first_stage_mount
+/product                ext4    product                                                 wait,logical,first_stage_mount
+/odm                    ext4    my_odm                                                  wait,logical,first_stage_mount
+/my_product             ext4    my_product                                              wait,logical,first_stage_mount
+/my_engineering         ext4    my_engineering                                          wait,logical,first_stage_mount
+/my_company             ext4    my_company.netease                                      wait,logical,first_stage_mount
+/my_carrier             ext4    my_carrier.vdf                                          wait,logical,first_stage_mount
+/my_region              ext4    my_region.japan                                         wait,logical,first_stage_mount
+/my_heytap              ext4    my_heytap.x                                             wait,logical,first_stage_mount
+/my_stock               ext4    my_stock.x                                              wait,logical,first_stage_mount
+/my_preload            ext4    my_preload.x                                            wait,logical,first_stage_mount
+
+/dev/block/by-name/md_udc           /metadata           ext4    noatime,nosuid,nodev,discard                                wait,formattable,first_stage_mount
+/dev/block/by-name/cache            /cache              ext4    noatime,nosuid,nodev,noauto_da_alloc,discard                wait,check,formattable
+/dev/block/by-name/userdata         /data               f2fs    noatime,nosuid,nodev,discard,noflush_merge                  wait,check,formattable,quota,latemount,resize,checkpoint=fs,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption,fsverity
