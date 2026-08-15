@@ -1,16 +1,18 @@
-/system                 ext4    system                                                  wait,logical,first_stage_mount
-/vendor                 ext4    vendor                                                  wait,logical,first_stage_mount
-/product                ext4    product                                                 wait,logical,first_stage_mount
-/odm                    ext4    my_odm                                                  wait,logical,first_stage_mount
-/my_product             ext4    my_product                                              wait,logical,first_stage_mount
-/my_engineering         ext4    my_engineering                                          wait,logical,first_stage_mount
-/my_company             ext4    my_company.netease                                      wait,logical,first_stage_mount
-/my_carrier             ext4    my_carrier.vdf                                          wait,logical,first_stage_mount
-/my_region              ext4    my_region.japan                                         wait,logical,first_stage_mount
-/my_heytap              ext4    my_heytap.x                                             wait,logical,first_stage_mount
-/my_stock               ext4    my_stock.x                                              wait,logical,first_stage_mount
-/my_preload            ext4    my_preload.x                                            wait,logical,first_stage_mount
+# Dynamic Partitions (Super)
+system                  /system             ext4    ro      wait,logical,first_stage_mount
+vendor                  /vendor             ext4    ro      wait,logical,first_stage_mount
+product                 /product            ext4    ro      wait,logical,first_stage_mount
+my_odm                  /odm                ext4    ro      wait,logical,first_stage_mount,nofail
+my_product              /my_product         ext4    ro      wait,logical,first_stage_mount,nofail
+my_engineering          /my_engineering     ext4    ro      wait,logical,first_stage_mount,nofail
+my_company.netease      /my_company         ext4    ro      wait,logical,first_stage_mount,nofail
+my_carrier.vdf          /my_carrier         ext4    ro      wait,logical,first_stage_mount,nofail
+my_region.japan         /my_region          ext4    ro      wait,logical,first_stage_mount,nofail
+my_heytap.x             /my_heytap          ext4    ro      wait,logical,first_stage_mount,nofail
+my_stock.x              /my_stock           ext4    ro      wait,logical,first_stage_mount,nofail
+my_preload.x            /my_preload         ext4    ro      wait,logical,first_stage_mount,nofail
 
-/dev/block/by-name/md_udc           /metadata           ext4    noatime,nosuid,nodev,discard                                wait,formattable,first_stage_mount
-/dev/block/by-name/cache            /cache              ext4    noatime,nosuid,nodev,noauto_da_alloc,discard                wait,check,formattable
-/data          f2fs    /dev/block/by-name/userdata    flags=fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized;keydirectory=/metadata/vold/metadata_encryption
+# Physical Partitions
+/dev/block/by-name/md_udc           /metadata       ext4    noatime,nosuid,nodev,discard                    wait,check,formattable,first_stage_mount
+/dev/block/by-name/cache            /cache          ext4    noatime,nosuid,nodev,noauto_da_alloc,discard    wait,check,formattable,first_stage_mount
+/dev/block/by-name/userdata         /data           f2fs    noatime,nosuid,nodev,discard                    wait,check,formattable,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption
