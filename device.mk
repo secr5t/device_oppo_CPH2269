@@ -37,5 +37,5 @@ PRODUCT_MANIFEST_FILES += \
 
 # Touchscreen
 PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/recovery/root/vendor/firmware/rgx.fw:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/firmware/rgx.fw
+    $(LOCAL_PATH)/recovery/root/vendor/firmware/rgx.fw:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/firmware/rgx.fw
     
