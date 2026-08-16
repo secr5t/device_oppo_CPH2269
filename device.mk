@@ -37,5 +37,6 @@ PRODUCT_MANIFEST_FILES += \
 
 # Touchscreen
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/recovery/root/init.recovery.mt6765.rc
     $(LOCAL_PATH)/recovery/root/vendor/firmware/rgx.fw:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/firmware/rgx.fw
     
