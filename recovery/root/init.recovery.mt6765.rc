@@ -63,5 +63,10 @@ on property:ro.crypto.state=encrypted
     start gatekeeper-1-0
     start cryptoeng-1-0
 
+service fastboot /system/bin/fastbootd
+    class late_start
+    shutdown critical
+    oneshot
+
 on property:sys.usb.config=adb && property:sys.usb.ffs.ready=1
     start adbd
