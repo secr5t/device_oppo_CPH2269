@@ -6,12 +6,23 @@ LOCAL_PATH := device/oppo/CPH2269
 
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
-PRODUCT_BUILD_SUPER_PARTITION := false
+# PRODUCT_BUILD_SUPER_PARTITION := false
+
+# VNDK
+PRODUCT_TARGET_VNDK_VERSION := 30
+
+# API
+PRODUCT_SHIPPING_API_LEVEL := 30
 
 # Fastbootd Support
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
     fastbootd
+
+# Gatekeeper
+PRODUCT_PACKAGES += \
+	android.hardware.gatekeeper@1.0-service \
+	android.hardware.gatekeeper@1.0-impl
 
 # Decryption & Security HALs
 PRODUCT_PACKAGES += \
@@ -20,22 +31,12 @@ PRODUCT_PACKAGES += \
     vendor.oplus.hardware.cryptoeng@1.0-service \
     android.hardware.health@2.1-service
 
-# Shared Libraries
-PRODUCT_PACKAGES += \
-    libMcClient \
-    libMcGatekeeper \
-    libSoftGatekeeper \
-    gatekeeper.mt6765 \
-    gatekeeper.oppo6765 \
-    libhidlbase \
-    libutils \
-    libcutils
+# Additional Libraries
+TARGET_RECOVERY_DEVICE_MODULES += \
+	libkeymaster4 \
+	libpuresoftkeymasterdevice
 
-# VINTF Manifest
-PRODUCT_MANIFEST_FILES += \
-    $(LOCAL_PATH)/recovery/root/system/etc/vintf/manifest.xml
-
-# Touchscreen & etc
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/recovery/root/vendor/firmware/rgx.fw:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/firmware/rgx.fw
-    
+RECOVERY_LIBRARY_SOURCE_FILES += \
+	$(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
+	$(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
+	
