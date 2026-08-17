@@ -31,6 +31,12 @@ PRODUCT_PACKAGES += \
     vendor.oplus.hardware.cryptoeng@1.0-service \
     android.hardware.health@2.1-service
 
+# F2FS Tools
+PRODUCT_PACKAGES += \
+    fsck.f2fs \
+    mkfs.f2fs \
+    sload.f2fs
+
 # Additional Libraries
 TARGET_RECOVERY_DEVICE_MODULES += \
 	libkeymaster4 \

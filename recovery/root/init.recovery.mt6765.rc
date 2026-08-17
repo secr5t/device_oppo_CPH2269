@@ -40,6 +40,7 @@ service cryptoeng-1-0 /system/bin/hw/vendor.oplus.hardware.cryptoeng@1.0-service
     user root
     group root
     disabled
+    oneshot
     seclabel u:r:recovery:s0
 
 service health-hal-2-1 /system/bin/android.hardware.health@2.1-service
@@ -50,13 +51,17 @@ service health-hal-2-1 /system/bin/android.hardware.health@2.1-service
 
 on property:hwservicemanager.ready=true
     start mobicore
+    start health-hal-2-1
+
+on property:mobicore.ready=true
     start keymaster-4-0-trustonic
     start gatekeeper-1-0
-    start cryptoeng-1-0
-    start health-hal-2-1
 
 on property:ro.crypto.state=encrypted
     start mobicore
     start keymaster-4-0-trustonic
     start gatekeeper-1-0
     start cryptoeng-1-0
+
+on property:sys.usb.config=adb && property:sys.usb.ffs.ready=1
+    start adbd

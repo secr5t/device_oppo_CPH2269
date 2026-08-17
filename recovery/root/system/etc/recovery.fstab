@@ -5,14 +5,14 @@ product                 /product            ext4    ro      wait,logical,first_s
 my_odm                  /odm                ext4    ro      wait,logical,first_stage_mount,nofail
 my_product              /my_product         ext4    ro      wait,logical,first_stage_mount,nofail
 my_engineering          /my_engineering     ext4    ro      wait,logical,first_stage_mount,nofail
-my_company.netease      /my_company         ext4    ro      wait,logical,first_stage_mount,nofail
-my_carrier.vdf          /my_carrier         ext4    ro      wait,logical,first_stage_mount,nofail
-my_region.japan         /my_region          ext4    ro      wait,logical,first_stage_mount,nofail
-my_heytap.x             /my_heytap          ext4    ro      wait,logical,first_stage_mount,nofail
-my_stock.x              /my_stock           ext4    ro      wait,logical,first_stage_mount,nofail
-my_preload.x            /my_preload         ext4    ro      wait,logical,first_stage_mount,nofail
+my_company              /my_company         ext4    ro      wait,logical,first_stage_mount,nofail
+my_carrier              /my_carrier         ext4    ro      wait,logical,first_stage_mount,nofail
+my_region               /my_region          ext4    ro      wait,logical,first_stage_mount,nofail
+my_heytap               /my_heytap          ext4    ro      wait,logical,first_stage_mount,nofail
+my_stock                /my_stock           ext4    ro      wait,logical,first_stage_mount,nofail
+my_preload              /my_preload         ext4    ro      wait,logical,first_stage_mount,nofail
 
 # Physical Partitions
 /dev/block/by-name/md_udc           /metadata       ext4    noatime,nosuid,nodev,discard                    wait,check,formattable,first_stage_mount
 /dev/block/by-name/cache            /cache          ext4    noatime,nosuid,nodev,noauto_da_alloc,discard    wait,check,formattable,first_stage_mount
-/dev/block/platform/bootdevice/by-name/userdata		/data		ext4		noatime,nosuid,nodev,noauto_da_alloc,errors=panic	wait,check,formattable,quota,resize,fileencryption=aes-256-xts
+/dev/block/platform/bootdevice/by-name/userdata		/data		f2fs		noatime,nosuid,nodev,noauto_da_alloc,discard,noflush_merge,fsync_mode=nobarrier,reserve_root=134217,resgid=1065,inlinecrypt	wait,check,formattable,quota,resize,fileencryption=aes-256-xts,metadataencryption
