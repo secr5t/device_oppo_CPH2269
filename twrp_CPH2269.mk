@@ -19,7 +19,7 @@ PRODUCT_MANUFACTURER := oppo
 PRODUCT_GMS_CLIENTID_BASE := android-oppo
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
+    persist.sys.usb.config=mtp,adb
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="CPH2269-user 11 RP1A.200720.011 1629972958632 release-keys"

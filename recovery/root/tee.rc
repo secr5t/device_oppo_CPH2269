@@ -3,6 +3,7 @@ on init
     mkdir /mnt/vendor/persist 0771 system system
 
 on post-fs
+    mount ext4 /dev/block/by-name/persist /mnt/vendor/persist rw nosuid nodev noatime
     chown system system /mnt/vendor/persist
     chmod 0771 /mnt/vendor/persist
 
