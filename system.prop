@@ -7,3 +7,7 @@ ro.sys.usb.storage.type=mtp
 ro.mediatek.platform=MT6765
 ro.hardware=mt6765
 ro.boot.dynamic_partitions=true
+ro.crypto.state=encrypted
+ro.crypto.type=file
+ro.hardware.egl=mtk
+ro.hardware.vulkan=mtk
