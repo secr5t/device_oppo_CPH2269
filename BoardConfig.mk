@@ -87,8 +87,17 @@ BOARD_INCLUDE_RECOVERY_DTBO := true
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
-# Security patch level
-VENDOR_SECURITY_PATCH := 2021-08-01
+# Security patch level / platform version.
+# Keymaster version-binds the metadata-encryption keyblob (os_version,
+# os_patchlevel, vendor_patchlevel), so these must match the stock ROM that
+# created the key. Otherwise begin() fails with -62 (KEY_REQUIRES_UPGRADE) and
+# the Trustonic TEE rejects the upgrade with -38, and /data never decrypts.
+# ro.build.version.release comes from PLATFORM_VERSION_LAST_STABLE, not from
+# PLATFORM_VERSION, so both have to be pinned to 11.
+PLATFORM_VERSION_LAST_STABLE := 11
+PLATFORM_VERSION := 11
+PLATFORM_SECURITY_PATCH := 2021-08-05
+VENDOR_SECURITY_PATCH := 2021-08-05
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
@@ -97,11 +106,6 @@ BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
 BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
-
-# Hack: prevent anti rollback
-PLATFORM_SECURITY_PATCH := 2099-12-31
-VENDOR_SECURITY_PATCH := 2099-12-31
-PLATFORM_VERSION := 11
 
 # Fastbootd
 TW_INCLUDE_FASTBOOTD := true

@@ -1,7 +1,12 @@
+# /mnt/vendor/persist holds the Trustonic TEE secure storage (Store_1.tf).
+# Without it mcDriverDaemon cannot load its trustlets and keymaster is useless.
+# Everything happens in "on init" because TWRP's init.rc does not necessarily
+# trigger post-fs, and /mnt/vendor does not exist in the recovery ramdisk.
 on init
+    mkdir /mnt 0755 root system
+    mkdir /mnt/vendor 0755 root root
     mkdir /mnt/vendor/persist 0771 system system
-
-on post-fs
+    wait /dev/block/by-name/persist
     mount ext4 /dev/block/by-name/persist /mnt/vendor/persist rw nosuid nodev noatime noauto_da_alloc discard
     chown system system /mnt/vendor/persist
     chmod 0771 /mnt/vendor/persist
